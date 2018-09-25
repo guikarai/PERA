@@ -5,7 +5,7 @@ Pervasive Encryption Readiness Assessment
 
 # What is PERA process?
 
-# Who to contacts for a PERA?
+# Who to contact for a PERA?
 
 # What data need are required for a PERA?
 
