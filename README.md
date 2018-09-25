@@ -21,13 +21,13 @@ Two main livrables:
 # PERA Samples
 
 
+
 # PERA delivery time
+
+# Required data for a PERA study
+You can find here the data collection methodology.
 
 # Contact us
 Contacts for information and support about the PERA Assessment:
 * guillaume_hoareau@fr.ibm.com
 * jmdarees@fr.ibm.com
-
-
-
-
