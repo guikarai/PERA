@@ -1,8 +1,8 @@
 # What is PERA?
 Pervasive Encryption Readiness Assessment (or simply PERA) is an offering proposed by the IBM Client Center of Montpellier. PERA is a study help for client expecting having answer about the following questions:
-* **Readiness** - Am I ready to start a Pervasive Encryption project? (Hardware, Software, Skills, Processes...)
-* **Volume** - Does my today volume of data justify to jump-in Pervasive Encryption project? (Volume of elligible data sets, data mapping, volume of elligible network connections, network mapping)
-* **Performance** - What could be the overhead? (Performance, Consumption, Project elapse...)
+* **READINESS** - Am I ready to start a Pervasive Encryption project? (Hardware, Software, Skills, Processes...)
+* **VOLUMES** - Does my today volume of data justify to jump-in Pervasive Encryption project? (Volume of elligible data sets, data mapping, volume of elligible network connections, network mapping)
+* **PERFORMANCE** - What could be the overhead? (Performance, Consumption, Project elapse...)
 
 # PERA advantages
 The PERA study requires a very small client investment in time and effort.
@@ -66,8 +66,76 @@ SMF 119 for 2 “loaded” hours only, for production only, for a collected day.
 More information available here: http://www-01.ibm.com/support/docview.wss?uid=tss1tc000066&aid=3 
 
 **NOTE:** Some results to be presented in the Crypto Assessment assumes that the following performance APARs have been applied to systems: **OA53718**, **OA53664**.
+
 **NOTE:** For pervasive encryption estimations, there are required APARs that provide enhancements to DFSMS SMF 42.6 for pervasive encryption. z/OS V2.1 and V2.2 require **OA52132**, and **OA52734** is required for V2.3.
-**NOTE:** If the machine where SMF records are collected from has no zAAP and no zIIP,
+
+**NOTE:** If the machine where SMF records are collected from has no zAAP and no zIIP, PROJECTCPU=YES must be specified in IEAOPTxx (at least during the collected period, but can remain active)
+
+
+## Splitting SMF file by record type
+
+SMF datasets are generally huge. It is a good option to create multiple files to be terse and sent.
+You can use the following JCL to create 4 files:
+* One file for SMF 70-79 · One file for SMF 30
+* One file for SMF 82
+* One file for SMF 113
+An example for SMF 70:79 is provided below:
+```
+//SMF7X EXEC PGM=IFASMFDP,REGION=64M
+//DUMPIN DD DISP=SHR,DSN=file-with-all-your-smf-records
+//DUMPOUT DDDSN=File-with-SMF-70:79-only,
+       DISP=(,CATLG),
+       UNIT=3390,SPACE=(TRK,(30000,4500),RLSE)
+//SYSPRINT DD SYSOUT=*
+INDD(DUMPIN,OPTIONS(DUMP))
+       DATE(1900000,2099366)
+       START(0000)
+       END(2400)
+OUTDD(DUMPOUT,TYPE(70:79))
+```
+
+## Tersing SMF records
+The SMF dataset must be on DASD. We cannot successfully unterse dataset compressed from tape to Dasd.
+You can use the following JCL sample to compress a SMF dataset:
+```
+//SPACK EXEC PGM=AMATERSE,PARM='SPACK'
+//*
+//SYSPRINT DD SYSOUT=*,DCB=(LRECL=133,BLKSIZE=0,RECFM=FBA)
+//SYSUT1 DD DISP=SHR,DSN=One of the five smf datasets above
+//*Organization . . . : PS
+//* Record format . . . : VBS
+//* Record length . . . : 32767
+//*Blocksize ....:32760 
+//SYSUT2 DD UNIT=3390,
+//       DISP=(,CATLG),
+//       SPACE=(TRK,(15000,5000),RLSE), size can vary
+//      DSN=tersed.dataset1.to.n (PS FB 1024 6144) 
+//*                   6144 or any multiple of 1024 
+```
+There is nothing else to do before sending the data.
+
+## Sending the tersed files
+The data collected will be sent to IBM Crypto assessment team through FTP using the following JCL template after having updated the fields in blue.
+The directory your_directory must be created before submitting the JCL, if not existing already.
+```
+//*------------------------------------------------------------------
+//TSOB EXEC PGM=IKJEFT01
+//SYSTSPRT DD SYSOUT=*
+//SYSPRINT DD SYSOUT=* 
+//SYSOUT   DD SYSOUT=*
+//*
+//SYSTSIN DD *
+ FTP ftpicc.edu.ihost.com
+//INPUT DD *
+ zntc 
+ xxxxxxx password will be provided in a separate mail
+ BIN cd your_directory
+ PUT 'host.smf.tersed.file' name-on-ftp-server 
+ PUT ... 
+ PUT ... 
+QUIT 
+```
+
 
 # Contact us
 Contacts for information and support about the PERA Assessment:
