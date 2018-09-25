@@ -23,7 +23,14 @@ Two main livrables:
 
 # PERA delivery time
 
-# What data need are required for a PERA?
+# Contact us
+Contacts for information and support about the PERA Assessment:
+* guillaume_hoareau@fr.ibm.com
+* jmdarees@fr.ibm.com
+
+
+
+# DATA COLLECTION PROCEDURE FOR A PERA
 
 In order to be able to analyze the hardware crypto utilization, z/OS and some key subsystems, we need to gather SMF records for all systems that will define the scope of the Crypto assessment study.
 
@@ -325,9 +332,4 @@ RACF_CSFSERV_ACTIVE              IBMRACF          ACTIVE(ENABLED)
 RACF_ENCRYPTION_ALGORITHM        IBMRACF          ACTIVE(ENABLED)
 ```
 For each of the preceding heath check display, please copy report in a text file.
-
-# Contact us
-Contacts for information and support about the PERA Assessment:
-* guillaume_hoareau@fr.ibm.com
-* jmdarees@fr.ibm.com
 
