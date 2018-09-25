@@ -26,18 +26,23 @@ PERA includes two main livrables:
 
 # PERA Samples
 
+### Client LPAR Scorecard regarding z/OS Data set encryption
+  ![alt text](https://github.com/guikarai/PERA/blob/master/IMAGES/pera-scorecard.png)
+
 ### Client elligible data sets for z/OS Data set encryption
-![alt text](https://github.com/guikarai/PERA/blob/master/IMAGES/pera-dataset.png)
-### Client data sets stuctures for a given LPAR
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
-### 
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+  ![alt text](https://github.com/guikarai/PERA/blob/master/IMAGES/pera-dataset.png)
+
+### Client elligible data sets per type for z/OS Data set encryption
+  ![alt text](https://github.com/guikarai/PERA/blob/master/IMAGES/pera-per-type.png)
+
+### Client elligible data sets and the "Extended format"
+  ![alt text](https://github.com/guikarai/PERA/blob/master/IMAGES/pera-extended.png)
+
+
 ### z/OS Coupling Facility Encryption
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+
 ### z/OS Data Set Encryption
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
-### Client Pervasive Encryption Technical Readiness Assessment
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+
 
 # PERA delivery time
 
