@@ -45,6 +45,7 @@ PERA includes two main livrables:
 
 
 # PERA delivery time
+![alt text](https://github.com/guikarai/PERA/blob/master/IMAGES/pera-timeline.png)
 
 # Required data for a PERA study
 You can find here the data collection methodology.
