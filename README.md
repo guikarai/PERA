@@ -44,6 +44,9 @@ PERA includes two main livrables:
   * 1day on client site summary presentation
   * 200+ pages report
 
+## PERA samples :bar_chart:
+You can find [here](https://github.com/guikarai/PERA/blob/master/pera-samples.md), a set of insights picked-up from a real PERA study.
+
 ## PERA delivery time :calendar:
 PERA start by contacting the IBM Client Center of Montpellier team.
 * Following a formal engament process and once client and IBM team has an agreement the PERA study process can start.
