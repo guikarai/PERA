@@ -1,7 +1,7 @@
 # What is PERA?
 The vision of Pervasive Encryption is to provide a simple, transparent, and consumable approach to enable extensive encryption of data in-flight and at-rest to substantially reduce the costs associated with protecting data and achieving compliance mandates.
 
-![#1589F0]
+![#1589F0] `#1589F0`
 
 Pervasive Encryption Readiness Assessment (or simply PERA) is an offering proposed by the IBM Client Center of Montpellier. 
 There are 3 main questions our client ask about Pervasive Encryption. PERA as a technical study has been designed to help them having answer about the following questions:
