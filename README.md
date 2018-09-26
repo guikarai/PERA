@@ -49,12 +49,12 @@ PERA includes two main livrables:
 ## PERA delivery time
 PERA start by contacting the IBM Client Center of Montpellier team.
 
-   0. :telephone_receiver: Following a formal engament process and once client and IBM team has an agreement the PERA study process can start.
-   1. :file_folder: Client collects technical data and share it with the IBM team.
-   2. :ok: The IBM team checks and validates received data. Count up to 7 days for this step according received volumes.
-   3. :bar_chart: The IBM team starts to analyse received data. Count up to 15 days for this step according received volumes.
-   4. :notebook: The IBM team create a delivery package made of technical reports, and an exective summary powerpoint presentation.
-   5. :calendar: The PERA study is delivered by the IBM Team on client premises during a 1 day technical workshop.
+   :telephone_receiver: Following a formal engament process and once client and IBM team has an agreement the PERA study process can start.
+   :file_folder: Client collects technical data and share it with the IBM team.
+   :ok: The IBM team checks and validates received data. Count up to 7 days for this step according received volumes.
+   :bar_chart: The IBM team starts to analyse received data. Count up to 15 days for this step according received volumes.
+   :notebook: The IBM team create a delivery package made of technical reports, and an exective summary powerpoint presentation.
+   :calendar: The PERA study is delivered by the IBM Team on client premises during a 1 day technical workshop.
 ![alt text](https://github.com/guikarai/PERA/blob/master/IMAGES/pera-timeline.png)
 
 ## Required data for a PERA study
