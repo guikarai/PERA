@@ -16,10 +16,10 @@ There are 3 main questions our client ask about Pervasive Encryption. PERA as a 
 :question: **PERFORMANCE** - What could be the overhead? *(Performance, Consumption, Project elapse...)*
 
 
-### PERA target audience
+## PERA target audience
 All IBM Z clients (having respectively z/OS and/or Linux on IBM Z) who envision to enable pervasive encryption on their IBM Z or LinuxONE environments is elligible to a PERA study.
 
-### PERA benefits and advantages
+## PERA benefits and advantages
 
 ### Benefits
 Starting with on a data collection phase, after a deep analyse of data, the client will know what are the steps they still have to take to be ready for pervasive encryption. They will get deep insights:
