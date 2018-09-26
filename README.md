@@ -27,6 +27,13 @@ PERA includes two main livrables:
 # PERA Samples
 
 ### Client LPAR Scorecard regarding z/OS Data set encryption
+  For each client LPAR we use to provide a scorecard. The main objective of this scorecard is to highlight several aspect that matters for every z/OS Data set encryption projects.
+  * Total number of elligible data sets:
+  * z/OS Treemap view:
+  * Extended-Format view:
+  * Encrypted view:
+  * Compressed view:
+
   ![alt text](https://github.com/guikarai/PERA/blob/master/IMAGES/pera-scorecard.png)
 
 ### Client elligible data sets for z/OS Data set encryption
