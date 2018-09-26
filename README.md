@@ -1,5 +1,5 @@
 # Pervasive Encryption Readiness Assessment
-A technical assessment from the IBM Client Center, Montpellier. 
+A technical assessment from the IBM Client Center of Montpellier. 
 
 ## What is PERA? 
 The vision of Pervasive Encryption is to provide a simple, transparent, and consumable approach to enable extensive encryption of data in-flight and at-rest to substantially reduce the costs associated with protecting data and achieving compliance mandates.
@@ -9,20 +9,20 @@ There are 3 main questions our client ask about Pervasive Encryption. PERA as a 
 
 :question: **READINESS** - Am I ready to start a Pervasive Encryption project? *(Hardware, Software, Skills, Processes...)*
 
-:question: **VOLUMES** - Does my today volume of data justify to jump-in Pervasive Encryption project? *(Volume of elligible data sets, data mapping, volume of elligible network connections, network mapping)*
+:question: **VOLUMES** - Does my today volume of data justify to jump-in Pervasive Encryption project? *(Volume of eligible data sets, data mapping, volume of eligible network connections, network mapping)*
 
 :question: **PERFORMANCE** - What could be the overhead? *(Performance, Consumption, Project elapse...)*
 
 
 ## PERA target audience :bulb:
-All IBM Z clients (having respectively z/OS and/or Linux on IBM Z) who envision to enable pervasive encryption on their IBM Z or LinuxONE environments is elligible to a PERA study.
+All IBM Z clients (having respectively z/OS and/or Linux on IBM Z) who envision to enable pervasive encryption on their IBM Z or LinuxONE environments is eligible to a PERA study.
 
 ## PERA benefits and advantages
 
 ### Benefits
 Starting with on a data collection phase, after a deep analyse of data, the client will know what are the steps they still have to take to be ready for pervasive encryption. They will get deep insights:
 * From the components they will need to configure
-* Intermediate and required stpes to broad the volume of elligible data sets and network connections
+* Intermediate and required stpes to broad the volume of eligible data sets and network connections
 * What are the best practices in terms of crypto configuration, secured network protocols and key management on IBM Z
 
 ### Advantages
@@ -35,7 +35,7 @@ PERA is based on technical study. From our client data we can see everything tha
 * Available whitespace for Pervasive Encryption projects
 * Encryption maturity
 * How optimized is the crypto environment
-* Data set structures, volumes and degree of ellibility
+* Data set structures, volumes and degree of elibility
 * Network architecture, volumes of unsecured network connections
 * Estimation of Impact of z/OS data set encryption on selected LPARs
 * Estimation of Impact of z/OS coupling facility encryption on selected LPARs
@@ -48,7 +48,7 @@ PERA includes two main livrables:
 You can find [here](https://github.com/guikarai/PERA/blob/master/pera-samples.md), a set of insights picked-up from a real PERA study.
 
 ## PERA delivery time :calendar:
-PERA start by contacting the IBM Client Center of Montpellier team.
+PERA starts by contacting the IBM Client Center of Montpelier team.
 * Following a formal engament process and once client and IBM team has an agreement the PERA study process can start.
 * Client collects technical data and share it with the IBM team.
 * The IBM team checks and validates received data. Count up to 7 days for this step according received volumes.
