@@ -45,6 +45,7 @@ PERA includes two main livrables:
 
 # PERA delivery time
 PERA start by contacting the IBM Client Center of Montpellier team.
+
 0. :telephone_receiver: Following a formal engament process and once client and IBM team has an agreement the PERA study process can start.
 1. :file_folder: Client collects technical data and share it with the IBM team.
 2. :ok: The IBM team checks and validates received data. Count up to 7 days for this step according received volumes.
