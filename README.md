@@ -1,10 +1,8 @@
 # Pervasive Encryption Readiness Assessment
 A technical assessment from the IBM Client Center, Montpellier. 
 
-## What is PERA?
+## What is PERA? 
 The vision of Pervasive Encryption is to provide a simple, transparent, and consumable approach to enable extensive encryption of data in-flight and at-rest to substantially reduce the costs associated with protecting data and achieving compliance mandates.
-
-
 
 Pervasive Encryption Readiness Assessment (or simply PERA) is an offering proposed by the IBM Client Center of Montpellier. 
 There are 3 main questions our client ask about Pervasive Encryption. PERA as a technical study has been designed to help them having answer about the following questions:
@@ -16,7 +14,7 @@ There are 3 main questions our client ask about Pervasive Encryption. PERA as a 
 :question: **PERFORMANCE** - What could be the overhead? *(Performance, Consumption, Project elapse...)*
 
 
-## PERA target audience
+## PERA target audience :bulb:
 All IBM Z clients (having respectively z/OS and/or Linux on IBM Z) who envision to enable pervasive encryption on their IBM Z or LinuxONE environments is elligible to a PERA study.
 
 ## PERA benefits and advantages
@@ -46,7 +44,7 @@ PERA includes two main livrables:
   * 1day on client site summary presentation
   * 200+ pages report
 
-## PERA delivery time
+## PERA delivery time :calendar:
 PERA start by contacting the IBM Client Center of Montpellier team.
 * Following a formal engament process and once client and IBM team has an agreement the PERA study process can start.
 * Client collects technical data and share it with the IBM team.
