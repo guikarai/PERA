@@ -48,25 +48,20 @@ PERA includes two main livrables:
 
 ## PERA delivery time
 PERA start by contacting the IBM Client Center of Montpellier team.
-
-   :telephone_receiver: Following a formal engament process and once client and IBM team has an agreement the PERA study process can start.
-   
-   :file_folder: Client collects technical data and share it with the IBM team.
-   
-   :ok: The IBM team checks and validates received data. Count up to 7 days for this step according received volumes.
-   
-   :bar_chart: The IBM team starts to analyse received data. Count up to 15 days for this step according received volumes.
-   
-   :notebook: The IBM team create a delivery package made of technical reports, and an exective summary powerpoint presentation.
-   
-   :calendar: The PERA study is delivered by the IBM Team on client premises during a 1 day technical workshop.
-   
+* Following a formal engament process and once client and IBM team has an agreement the PERA study process can start.
+* Client collects technical data and share it with the IBM team.
+* The IBM team checks and validates received data. Count up to 7 days for this step according received volumes.
+* The IBM team starts to analyse received data. Count up to 15 days for this step according received volumes.
+* The IBM team create a delivery package made of technical reports, and an exective summary powerpoint presentation.
+* The PERA study is delivered by the IBM Team on client premises during a 1 day technical workshop.
 ![alt text](https://github.com/guikarai/PERA/blob/master/IMAGES/pera-timeline.png)
 
-## Required data for a PERA study
-You can find here the data collection methodology for [alt text](https://github.com/guikarai/PERA/blob/master/data-collection.md "z/OS environment").
+## Required data for a PERA study :file_folder:
+You can find here the data collection methodology for [z/OS Environment](https://github.com/guikarai/PERA/blob/master/data-collection.md).
 
-## Contact us
+You can find here the data collection methodology for Linux, z/VM and KVM Environment.
+
+## Contact us :email:
 Contacts for information and support about the PERA Assessment:
 * guillaume_hoareau@fr.ibm.com
 * jmdarees@fr.ibm.com
