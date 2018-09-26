@@ -1,4 +1,7 @@
-# What is PERA?
+# Pervasive Encryption Readiness Assessment
+A technical assessment from the IBM Client Center, Montpellier. 
+
+## What is PERA?
 The vision of Pervasive Encryption is to provide a simple, transparent, and consumable approach to enable extensive encryption of data in-flight and at-rest to substantially reduce the costs associated with protecting data and achieving compliance mandates.
 
 
@@ -13,18 +16,18 @@ There are 3 main questions our client ask about Pervasive Encryption. PERA as a 
 :question: **PERFORMANCE** - What could be the overhead? ***(Performance, Consumption, Project elapse...)***
 
 
-# PERA target audience
+### PERA target audience
 All IBM Z clients (having respectively z/OS and/or Linux on IBM Z) who envision to enable pervasive encryption on their IBM Z or LinuxONE environments is elligible to a PERA study.
 
-# PERA benefits and advantages
+### PERA benefits and advantages
 
-## Benefits
+### Benefits
 Starting with on a data collection phase, after a deep analyse of data, the client will know what are the steps they still have to take to be ready for pervasive encryption. They will get deep insights:
 * from the components they will need to configure
 * intermediate and required stpes to broad the volume of elligible data sets and network connections
 * what are the best practices in terms of crypto configuration, secured network protocols and key management on IBM Z
 
-## Advantages
+### Advantages
 The PERA study requires a very small client investment in time and effort. Client send data, and the IBM team works from these data.
 
 The team in charge of PERA has more than 1 year of customer experience spent in Pervasive Encryption projects.More over, Montpellier client center team having more than 10 years of zMAX study and PERA has the similar approach and efficiency (Data collection first, Site client delivery second).
@@ -43,7 +46,7 @@ PERA includes two main livrables:
   * 1day on client site summary presentation
   * 200+ pages report
 
-# PERA delivery time
+## PERA delivery time
 PERA start by contacting the IBM Client Center of Montpellier team.
 
    0. :telephone_receiver: Following a formal engament process and once client and IBM team has an agreement the PERA study process can start.
@@ -54,10 +57,10 @@ PERA start by contacting the IBM Client Center of Montpellier team.
    5. :calendar: The PERA study is delivered by the IBM Team on client premises during a 1 day technical workshop.
 ![alt text](https://github.com/guikarai/PERA/blob/master/IMAGES/pera-timeline.png)
 
-# Required data for a PERA study
+## Required data for a PERA study
 You can find here the data collection methodology.
 
-# Contact us
+## Contact us
 Contacts for information and support about the PERA Assessment:
 * guillaume_hoareau@fr.ibm.com
 * jmdarees@fr.ibm.com
