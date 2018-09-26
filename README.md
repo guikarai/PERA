@@ -64,7 +64,7 @@ PERA start by contacting the IBM Client Center of Montpellier team.
 ![alt text](https://github.com/guikarai/PERA/blob/master/IMAGES/pera-timeline.png)
 
 ## Required data for a PERA study
-You can find here the data collection methodology.
+You can find here the data collection methodology for ![alt text](https://github.com/guikarai/PERA/blob/master/IMAGES/pera-timeline.png "z/OS environment").
 
 ## Contact us
 Contacts for information and support about the PERA Assessment:
