@@ -21,9 +21,9 @@ All IBM Z clients (having respectively z/OS and/or Linux on IBM Z) who envision 
 
 ### Benefits
 Starting with on a data collection phase, after a deep analyse of data, the client will know what are the steps they still have to take to be ready for pervasive encryption. They will get deep insights:
-* from the components they will need to configure
-* intermediate and required stpes to broad the volume of elligible data sets and network connections
-* what are the best practices in terms of crypto configuration, secured network protocols and key management on IBM Z
+* From the components they will need to configure
+* Intermediate and required stpes to broad the volume of elligible data sets and network connections
+* What are the best practices in terms of crypto configuration, secured network protocols and key management on IBM Z
 
 ### Advantages
 The PERA study requires a very small client investment in time and effort. Client send data, and the IBM team works from these data.
