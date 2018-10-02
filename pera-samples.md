@@ -10,6 +10,9 @@
 
   ![alt text](https://github.com/guikarai/PERA/blob/master/IMAGES/pera-scorecard.png)
 
+### Client LPAR Scorecard regarding Network connections
+  ![alt text](https://github.com/guikarai/PERA/blob/master/IMAGES/pera-score-card-zert.png)
+
 ### Client eligible data sets for z/OS Data set encryption
 For all the LPAR analysed during a study, we use to focus on those having the biggest volume of data set. it is helpful to priorize which LPARs concentrate the volume of data set to be protected by encryption. In that case, 4 LPARS concentrates 95% of eligible data sets to be protected.
   ![alt text](https://github.com/guikarai/PERA/blob/master/IMAGES/pera-dataset.png)
@@ -21,8 +24,3 @@ For all the LPAR analysed during a study, we use to focus and to identify data s
 ### Client eligible data sets and the "Extended format"
 For all the LPAR analysed during a study, we use to focus and to identify if eligible data set are in extended format or not. I that case extended format data sets are ready for being encrypted. Non-extended format are potential data sets that can be encrypted if they become extended format after a data migration process as intermediate steps. This chart in this case shows how inequal LPARs are and in most of the case, the encryption to be become pervasive on eligible data set will required data set to be in extended format.
   ![alt text](https://github.com/guikarai/PERA/blob/master/IMAGES/pera-extended.png)
-
-
-### z/OS Coupling Facility Encryption
-
-### z/OS Data Set Encryption
