@@ -2,7 +2,7 @@
 
 In order to be able to analyze the hardware crypto utilization, z/OS and some key subsystems, we need to gather SMF records for all systems that will define the scope of the Crypto assessment study.
 
-## SMF Records
+## 1. SMF Records
 SMF records allow us to analyse your z/OS crypto performance and configuration to potentially detect bottleneck and propose optimization recommendations. We need to following SMF records for a standard Crypto assessment study:
 Hardware and z/OS:
 * **SMF 70-79**
@@ -16,7 +16,7 @@ Hardware and z/OS:
 
 We expect to have SMF 7x and SMF 113 (if collected) for all partitions of all machines. Before sending any data to our ftp server, you will need to contact us to receive a user and a password for this server.
 
-## Mandatory SMF Data
+## 2. Mandatory SMF Data
 
 A standard PERA assessment analyzes the hardware, z/OS, ICSF and z/OS configurations.
 SMF records for 2 to 3 days representing a period of significant activity. You can send all the SMF records type, and we will sort them in IBM Client Center, or limit the records to:
@@ -49,7 +49,7 @@ More information available here: http://www-01.ibm.com/support/docview.wss?uid=t
 **NOTE:** If the machine where SMF records are collected from has no zAAP and no zIIP, PROJECTCPU=YES must be specified in IEAOPTxx (at least during the collected period, but can remain active)
 
 
-## Splitting SMF file by record type
+## 3. Splitting SMF file by record type
 
 SMF datasets are generally huge. It is a good option to create multiple files to be terse and sent.
 You can use the following JCL to create 4 files:
@@ -71,7 +71,7 @@ INDD(DUMPIN,OPTIONS(DUMP))
 OUTDD(DUMPOUT,TYPE(70:79))
 ```
 
-## Tersing SMF records
+## 4. Tersing SMF records
 The SMF dataset must be on DASD. We cannot successfully unterse dataset compressed from tape to Dasd.
 You can use the following JCL sample to compress a SMF dataset:
 ```
@@ -91,7 +91,7 @@ You can use the following JCL sample to compress a SMF dataset:
 ```
 There is nothing else to do before sending the data.
 
-## Sending the tersed files
+## 5. Sending the tersed files
 The data collected will be sent to IBM Crypto assessment team through FTP using the following JCL template after having updated the fields in blue.
 The directory your_directory must be created before submitting the JCL, if not existing already.
 ```
@@ -241,7 +241,7 @@ Certificate:
          57:62:71:d2
 ```
 
-## Data collection procedure – OpenSSH
+## 6. Extra data collection procedure – OpenSSH
 ### Cipher preference check
 If OpenSSH is installed and running on your z/OS environment, be aware a number of version 2 ciphers have been disabled in the recent version of the release of openssh. 
 Let’s check the z/OS-specific OpenSSH daemon configuration file located by default in /etc/ssh/zos_sshd_config. In an USS terminal, please issue the following command:
@@ -262,7 +262,96 @@ Under Unix System Services, please issue the following command:
 ```
 Eg. exemple: pasearch -p TCPIP
 
-## Network stats
+## 6. Network stats
+
+### zERT SMF 119 type 12
+
+#### Check SMF parameters
+First of all SMFPRMxx should not prevent SMF119 to be recorded with NOTYPE or TYPE parameters.
+
+From z/OS console: DISPLAY SMF,O
+```
+RESPONSE=TCL1                                                     
+ IEE967I 14.10.32 SMF PARAMETERS 746                              
+         MEMBER = SMFPRM02                                        
+…
+         SUBSYS(STC,NOTYPE(16:19,62:63,65:69,92,103)) -- SYS      
+         SUBSYS(STC,NOINTERVAL) -- SYS                            
+         SUBSYS(STC,NODETAIL) -- SYS    
+```
+
+119 should not be in a NOTYPE value or interval.
+
+#### Enable TCP/IP SMF 119 generation (dynamically)
+##### Create obeyfile
+Obeyfile dataset or member should contain:
+```
+GLOBALCONFIG NOTCPIPSTATISTICS ZERT AGGREGATION
+SMFCONFIG    TYPE119 ZERTDETAIL
+SMFCONFIG    TYPE119 ZERTSUMMARY
+```
+##### Run obeyfile
+From z/OS Console, run le following command:
+```
+VARY TCPIP,[TCP/IP address space],o,DSN=[obeyfile dataset or dataset(member)]
+```
+
+##### Verify SMF settings and ZERT activation
+```
+DISPLAY TCPIP,[TCP/IP address space],NETSTAT,CONFIG
+```
+
+After the 50TH line, you should see something like:
+```
+TYPE 119:                                               
+  TCPINIT:      NO   TCPTERM:      NO   FTPCLIENT:    NO
+  TCPIPSTATS:   NO   IFSTATS:      NO   PORTSTATS:    NO
+  STACK:        NO   UDPTERM:      NO   TN3270CLIENT: NO
+  IPSECURITY:   NO   PROFILE:      NO   DVIPA:        NO
+  SMCRGRPSTATS: NO   SMCRLNKEVENT: NO                   
+  SMCDLNKSTATS: NO   SMCDLNKEVENT: NO                   
+  ZERTDETAIL:   YES  ZERTSUMMARY:  YES
+```
+
+And 18 lines after
+```
+ZERT: YES         
+  AGGREGATION: YES
+```
+##### Dump SMF 119s from logstreams
+Business as usual JCL:
+```
+//DMPSMFL JOB SAT,'STEPHANE',MSGCLASS=H,MSGLEVEL=(1,1),  
+//        CLASS=A,NOTIFY=&SYSUID. TYPRUN=HOLD            
+//*                                                      
+//IEFPROC EXEC PGM=IFASMFDL                              
+//OUT     DD  DSN=STEF.SMF119,                           
+//        DISP=(NEW,CATLG),                              
+//        UNIT=3390,                                     
+//        SPACE=(CYL,(50,10),RLSE),                      
+//        DCB=(BLKSIZE=32760,LRECL=32760,RECFM=VBS)      
+//SYSPRINT DD  SYSOUT=*                                  
+//SYSIN    DD  *                                         
+  LSNAME(IFASMF.TCL1.DEFAULT,OPTIONS(DUMP))              
+  OUTDD(OUT,TYPE(119))                                   
+  START(0000)                                            
+  END(2400)   
+```
+
+#### Disable TCP/IP SMF 119 generation (dynamically)
+##### Create obeyfile 
+Obeyfile dataset or member should contain:
+```
+GLOBALCONFIG NOTCPIPSTATISTICS NOZERT
+```
+
+##### Run obeyfile
+```
+VARY TCPIP,[TCP/IP address space],o,DSN=[obeyfile dataset or dataset(member)]
+```
+Optionally, you may verify that
+
+### Display TCPIP
 Please issue the following command and copy output into a text file.
 ```
 /D TCPIP,<adresse space of TCPIP>,N,CONFIG
@@ -271,7 +360,7 @@ Please issue the following command and copy output into a text file.
 ```
 Eg. exemple: /D TCPIP,TCPIP,N,STATS
 
-## Data collection procedure – ICSF
+## 7. Data collection procedure – ICSF
 ### ICSF Display
 Please issue the following command and copy output into a text file.
 ```
