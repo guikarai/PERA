@@ -194,7 +194,7 @@ card01 provides capability for:
 RSA 4K Clear Key
 ```
 
-**$ pkcsconf -t*
+**$ pkcsconf -t**
 ```
 Token #3 Info:
 Label: IBM OS PKCS#11                  
