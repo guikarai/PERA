@@ -20,14 +20,14 @@ We expect to have SMF 7x and SMF 113 (if collected) for all partitions of all ma
 
 A standard PERA assessment analyzes the hardware, z/OS, ICSF and z/OS configurations.
 SMF records for 2 to 3 days representing a period of significant activity. You can send all the SMF records type, and we will sort them in IBM Client Center, or limit the records to:
-* RMF records: 70-79
-* Batch analysis: 30
-* DFSMS: 42
-* SMS Activity: 14, 15
-* ICSF: 82
-* For products information: SMF 89 (Optional)
-* Hardware instrumentation: 113 produced by HIS address space
-* zERT Connection details: SMF 119 (if running z/OS 2.3)
+* **RMF records:** 70-79
+* **Batch analysis:** 30
+* **DFSMS:** 42
+* **SMS Activity:** 14, 15
+* **ICSF:** 82
+* **For products information:** SMF 89 (Optional)
+* **Hardware instrumentation:** 113 produced by HIS address space
+* **zERT Connection details:** SMF 119 (if running z/OS 2.3)
 
 Usually, we need SMF 7x and SMF 113 for all LPAR, for all CPC, SMF 30 for the same period than SMF 7x, but for production only, for each collected day.
 
