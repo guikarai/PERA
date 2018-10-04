@@ -253,6 +253,12 @@ No devices found
 ```
 ```
 
+**$ swapon -s**
+```
+Filename				Type		Size	Used	Priority
+/dev/dasdb1                            	partition	1439900	432128	0
+```
+
 # Linux on IBM Z Data in motion environment
 
 **$ openssl version**
