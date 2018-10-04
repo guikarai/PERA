@@ -1,4 +1,4 @@
-# Pervasive Encryption Readiness Assessment
+# Pervasive Encryption Readiness & Deployme Assessment
 A technical assessment from the IBM Client Center of Montpellier. 
 
 ## What is PERA? 
