@@ -89,29 +89,63 @@ openssl-ibmca/bionic,now 1.4.1-0ubuntu1 s390x [installed]
   libica based hardware acceleration engine for OpenSSL
 ```
 
+**$ sudo apt search opencryptoki**
+```
+Sorting... Done
+Full Text Search... Done
+libica-dev/bionic 3.2.1-0ubuntu1 s390x
+  hardware cryptography support for IBM System z hardware (dev package)
 
-§ openSSL (libcrypto API)
-– option: configure ibmca engine
-– z14 GCM support via ibmca engine
-§ openCryptoki (PKCS#11 API)
-– with ica token (calls libica)
-§ GSKit
-– used by IBM software
-– latest release supports Z14 CPACF
-§ IBM Java 8 IBMJCE (JCE API)
-§ latest release supports Z14 CPACF 
+libica-utils/bionic,now 3.2.1-0ubuntu1 s390x [installed]
+  hardware cryptography support for Linux on z Systems (utils)
+
+libica3/bionic,now 3.2.1-0ubuntu1 s390x [installed,automatic]
+  hardware cryptography support for IBM System z hardware
+
+libopencryptoki-dev/bionic-updates 3.9.0+dfsg-0ubuntu1.1 s390x
+  PKCS#11 implementation (development)
+
+libopencryptoki0/bionic-updates 3.9.0+dfsg-0ubuntu1.1 s390x
+  PKCS#11 implementation (library)
+
+opencryptoki/bionic-updates 3.9.0+dfsg-0ubuntu1.1 s390x
+  PKCS#11 implementation (daemon)
+
+tpm-tools-pkcs11/bionic 1.3.9.1-0.2ubuntu3 s390x
+  Management tools for the TPM hardware (PKCS#11 tools)
+...
+```
+
+**$ apache2 -v**
+```
+Server version: Apache/2.4.29 (Ubuntu)
+Server built:   2018-06-27T17:05:04
+```
+
+**$ java -version**
+```
+Command 'java' not found, but can be installed with:
+
+apt install default-jre            
+apt install openjdk-11-jre-headless
+apt install openjdk-8-jre-headless 
+
+Ask your administrator to install one of them.
+```
+
 
 # Linux on IBM Z Data at rest environment
 
 
 # Linux on IBM Z Data in motion environment
 
-**$ sudo apt search openssl-ibmca**
+**$ openssl -v**
 ```
-Sorting... Done
-Full Text Search... Done
-openssl-ibmca/bionic,now 1.4.1-0ubuntu1 s390x [installed]
 
-  libica based hardware acceleration engine for OpenSSL
 ```
+**$ ssh -V**
+```
+OpenSSH_7.6p1 Ubuntu-4, OpenSSL 1.0.2n  7 Dec 2017
+```
+
 
