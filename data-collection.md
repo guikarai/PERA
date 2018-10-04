@@ -1,18 +1,18 @@
-# DATA COLLECTION PROCEDURE FOR A PERA
+# Data collection procedure for a Pervasive Encryption Readiness Assessment
 
 In order to be able to analyze the hardware crypto utilization, z/OS and some key subsystems, we need to gather SMF records for all systems that will define the scope of the Crypto assessment study.
 
 ## SMF Records
 SMF records allow us to analyse your z/OS crypto performance and configuration to potentially detect bottleneck and propose optimization recommendations. We need to following SMF records for a standard Crypto assessment study:
 Hardware and z/OS:
-* SMF 70-79
-* SMF 14, 15
-* SMF 30
-* SMF 42
-* SMF 82
-* SMF 89
-* SMF 113
-* SMF 119 (if running z/OS 2.3)
+* **SMF 70-79
+* **SMF 14, 15
+* **SMF 30
+* **SMF 42
+* **SMF 82
+* **SMF 89
+* **SMF 113
+* **SMF 119 (if running z/OS 2.3)
 
 We expect to have SMF 7x and SMF 113 (if collected) for all partitions of all machines. Before sending any data to our ftp server, you will need to contact us to receive a user and a password for this server.
 
