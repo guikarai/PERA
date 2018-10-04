@@ -2,7 +2,10 @@
 
 ## Type of offerings
 
-### What is a Technical Enablement (TE)
+### Pervasive Encryption (TE)
 ### What is a Healthcheck (HC)
-### What is a Readiness Assessment (RA)
+### Pervasive Encryption Readiness & Deployment Assessment (PERDA)
+
+
+
 ### What is a Fast Start (FS)
