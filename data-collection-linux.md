@@ -70,6 +70,7 @@ UBUNTU_CODENAME=xenial
 
 ## CPU configuration
 lscpu gathers CPU architecture information from sysfs, /proc/cpuinfo and any applicable architecture-specific libraries. The information includes, for example, the number of CPUs, threads, cores, sockets, and Non-Uniform Memory Access (NUMA) nodes. There is also information about the CPU caches and cache sharing, family, model, bogoMIPS, byte order, and stepping.
+
 **$ lscpu**
 ```
 Architecture:        s390x
@@ -104,6 +105,7 @@ Flags:               esan3 zarch stfle msa ldisp eimm dfp edat etf3eh highgprs t
 
 ## Memory configuration
 The lsmem command lists the ranges of available memory with their online status. The listed memory blocks correspond to the memory block representation in sysfs. The command also shows the memory block size and the amount of memory in online and offline state.
+
 **$ lsmem**
 ```
 RANGE                                 SIZE  STATE REMOVABLE BLOCK
@@ -116,6 +118,7 @@ Total offline memory:      0B
 
 ## DASD configuration
 Use the lsdasd command to gather information about DASD devices from sysfs and display it in a summary format.
+
 **$ lsdasd**
 ```
 Bus-ID     Status      Name      Device  Type  BlkSz  Size      Blocks
@@ -127,6 +130,7 @@ Bus-ID     Status      Name      Device  Type  BlkSz  Size      Blocks
 
 ## Disk space
 The df command reports the amount of available disk space being used by file systems.
+
 **$ df -h**
 ```
 Filesystem                 Size  Used Avail Use% Mounted on
@@ -152,6 +156,7 @@ shm                         64M     0   64M   0% /var/lib/docker/containers/1335
 
 ## libICA
 To make use of the libica hardware support for cryptographic functions, must be install the libica version 3.0 package. it Depending on the distribution and installation parameters, some or all of them might be already installed with your initial setup.
+
 **$ sudo apt search libica3**
 ```     
 sudo apt search libica3
@@ -162,6 +167,7 @@ libica3/bionic,now 3.2.1-0ubuntu1 s390x [installed,automatic]
 ```
 
 The libICA package provides a command icainfo that lists the libICA supported cryptographic operations for an IBM Z system. 
+
 **$ icainfo -v**
 ```
 icainfo: libica version 3.2.1
@@ -169,6 +175,7 @@ Copyright IBM Corp. 2007, 2016.
 ```
 
 The icainfo command to check on the CPACF feature code enablement. If the Crypto Enablement feature 3863 is installed, you will see that besides SHA, other algorithms are available with hardware support. The icainfo command displays which CPACF functions are supported by the implementation inside the libica library. 
+
 **$ icainfo**
 ```
       Cryptographic algorithm support      
@@ -216,6 +223,7 @@ No built-in FIPS support.
 ```
 
 Use the icastats utility to find out whether libICA uses hardware acceleration features or works with software fallbacks. 
+
 **$ icastats -v**
 ```
 icastats: libica version 3.2.1
@@ -223,6 +231,7 @@ Copyright IBM Corp. 2009, 2010, 2011, 2014.
 ```
 
 icastats displays statistic data about the usage of cryptographic functions provided by libica. libICA is a cryptographic library supporting SHA, RSA, DES and AES in different modes of operations. The invocation of each call to all the cryptographic functions is tracked with individual counters which can be displayed and maintained with icastats.
+
 **$ sudo icastats -A**
 ```
 user: root
@@ -270,6 +279,7 @@ user: root
 
 ## openCryptoki for PKCS#11
 openCryptoki is a PKCS#11 library and tools for Linux. It includes tokens supporting TPM and IBM crypto hardware as well as a software token.
+
 **$ sudo apt search opencryptoki**
 ```
 Sorting... Done
@@ -286,6 +296,7 @@ opencryptoki/bionic-updates 3.9.0+dfsg-0ubuntu1.1 s390x
 
 ## Crypto modules
 Use the lsmod command to check whether the crypto device driver module is already loaded. If the module is not loaded, use the modprobe command to load the device driver module. The cryptographic device driver consists of multiple, separate modules.
+
 **$ lsmod | grep aes_s390**
 ```
 aes_s390               24576  0
@@ -336,6 +347,7 @@ Per-device successfully completed request counts
 ```
 
 For the Linux virtual machine to gain access to the crypto card, you must load a specialized crypto device driver. By default, the device drivers that are required for Crypto processing are not loaded.
+
 **$ lszcrypt**
 If the device driver is loaded:
 ```
@@ -394,6 +406,7 @@ Please ask your administrator.
 ```
 
 ## Java
+
 **$ sudo java -version**
 If java is installed:
 
