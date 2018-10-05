@@ -1,16 +1,7 @@
-# Data collection procedure for a Pervasive Encryption Readiness & Deployment Assessment
+# Data collection procedure for a Pervasive Encryption Readiness & Deployment Assessment (Linux on IBM Z and KVM).
 There are both sar data and Configuration/Display dumps to be collected.
 
-# Key aspect of the study
-* Linux sar performance data
-* CPACF Enablement verification
-* Linux version
-* Linux configuration
-* Verification of support for Hardware Cryptographic operation
-* Linux on IBM Z Data at rest environment
-* Linux on IBM Z Data in motion environment
-
-# SAR and Systems data
+# 1. SAR and Systems data
 
 ## Linux sar and processes performance data for 1-2 days
 Sar data allow us to analyse your each Linux Guest and KVM Guest/Host crypto performance and their configuration to potentially detect bottleneck and propose optimization recommendations. Please Enable APPLDATA Stream from Linux to VM. Collect the sar data: 
@@ -19,9 +10,9 @@ sar -o OutFilename XXX YYY >/dev/null 2>&1 &
 ```
 Note that **XXX** = collect interval in seconds and **YYY** = interval number
 
-# Configuration/Display data
+# 2. Configuration/Display data
 
-## 1. CPACF Enablement verification
+## 2.1. CPACF Enablement verification
 A Linux on IBM Z user can easily check whether the Crypto Enablement feature is installed and which algorithms are supported in hardware. Hardware-acceleration for DES, TDES, AES, and GHASH requires CPACF. Read the features line from /proc/cpuinfo to discover whether the CPACF feature is enabled on your hardware.
 
 **$ cat /proc/cpuinfo**
@@ -42,7 +33,7 @@ processor 1: version = FF,  identification = 233EF7,  machine = 3906
 ***Note:*** From the cpuinfo output, you can find the features that are enabled in the central processors.
 If the features list has **msa** listed, it means that CPACF is enabled. 
 
-## 2. Linux Version
+## 2.2. Linux Version
 Type uname -a. This will give you your kernel version, but might not mention the distribution your running. 
 
 **$ uname -a**
@@ -71,7 +62,7 @@ VERSION_CODENAME=xenial
 UBUNTU_CODENAME=xenial
 ```
 
-## 3. Linux Configuration
+## 2.3. Linux Configuration
 
 ### CPU configuration
 lscpu gathers CPU architecture information from sysfs, /proc/cpuinfo and any applicable architecture-specific libraries. The information includes, for example, the number of CPUs, threads, cores, sockets, and Non-Uniform Memory Access (NUMA) nodes. There is also information about the CPU caches and cache sharing, family, model, bogoMIPS, byte order, and stepping.
@@ -157,7 +148,7 @@ none                        20G  5.0G   14G  27% /var/lib/docker/aufs/mnt/2b84e7
 shm                         64M     0   64M   0% /var/lib/docker/containers/13357e6d4a031801b5da3b4a3610aa6867704cf5e2c6f4096e1b24eaa640f533/shm
 ```
 
-## 4. Verification of support for Hardware Cryptographic operation
+## 2.4. Verification of support for Hardware Cryptographic operation
 
 ### libICA
 To make use of the libica hardware support for cryptographic functions, must be install the libica version 3.0 package. it Depending on the distribution and installation parameters, some or all of them might be already installed with your initial setup.
@@ -426,7 +417,7 @@ apt install openjdk-8-jre-headless
 Ask your administrator to install one of them.
 ```
 
-## 5. Linux on IBM Z Data at rest environment
+## 2.5. Linux on IBM Z Data at rest environment
 
 **$ sudo blkid**
 ```
@@ -465,7 +456,7 @@ Filename				Type		Size	Used	Priority
 /dev/dasdc1                            	partition	5242940	583996	0
 ```
 
-## 6. Linux on IBM Z Data in motion environment
+## 2.6. Linux on IBM Z Data in motion environment
 
 **$ openssl version**
 ```
