@@ -61,7 +61,7 @@ PERDA starts by contacting the IBM Client Center of Montpelier team.
 ## Required data for a PERDA study :file_folder:
 You can find here the data collection methodology for [z/OS Environment](https://github.com/guikarai/PERA/blob/master/data-collection.md).
 
-You can find here the data collection methodology for Linux, z/VM and KVM Environment (Very Soon)
+You can find here the data collection methodology for [Linux & KVM](https://github.com/guikarai/PERA/blob/master/data-collection-linux.md), and z/VM Environment.
 
 ## Contact us :email:
 Contacts for information and support about the PERDA Assessment:
