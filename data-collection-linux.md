@@ -419,29 +419,32 @@ Ask your administrator to install one of them.
 
 **$ sudo dmsetup status
 ```
-No devices found
+vg5964-lv5964: 0 41934848 linear 
 ```
 
-**$ sudo df -h**
-```
-```
 
 **$ sudo lvs**
 ```
+LV     VG     Attr       LSize  Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert
+  lv5964 vg5964 -wi-ao---- 20.00g    
 ```
 
 **$ sudo vgs**
 ```
+VG     #PV #LV #SN Attr   VSize  VFree
+  vg5964   1   1   0 wz--n- 20.00g    0 
 ```
 
 **$ sudo pvs**
 ```
+PV          VG     Fmt  Attr PSize  PFree
+  /dev/dasdb1 vg5964 lvm2 a--  20.00g    0 
 ```
 
 **$ swapon -s**
 ```
 Filename				Type		Size	Used	Priority
-/dev/dasdb1                            	partition	1439900	432128	0
+/dev/dasdc1                            	partition	5242940	583996	0
 ```
 
 # 8. Linux on IBM Z Data in motion environment
@@ -457,7 +460,6 @@ OpenSSL 1.1.0g  2 Nov 2017
 (ibmca) Ibmca hardware engine support
  [RAND, DES-ECB, DES-CBC, DES-OFB, DES-CFB, DES-EDE3, DES-EDE3-CBC, DES-EDE3-OFB, DES-EDE3-CFB, AES-128-ECB, AES-192-ECB, AES-256-ECB, AES-128-CBC, AES-192-CBC, AES-256-CBC, AES-128-OFB, AES-192-OFB, AES-256-OFB, AES-128-CFB, AES-192-CFB, AES-256-CFB, id-aes128-GCM, id-aes192-GCM, id-aes256-GCM, SHA1, SHA256, SHA512]
 ```
-
 
 **$ ssh -V**
 ```
