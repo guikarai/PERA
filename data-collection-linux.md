@@ -1,13 +1,13 @@
 # PERDA for Linux on IBM Z
 
 # Key aspect of the study
-*1. Linux sar performance data
-*2. CPACF Enablement verification
-*3. Linux version
-*4. Linux configuration
-*5. Verification of support for Hardware Cryptographic operation
-*6. Linux on IBM Z Data at rest environment
-*7. Linux on IBM Z Data in motion environment
+* Linux sar performance data
+* CPACF Enablement verification
+* Linux version
+* Linux configuration
+* Verification of support for Hardware Cryptographic operation
+* Linux on IBM Z Data at rest environment
+* Linux on IBM Z Data in motion environment
 
 # 1. Linux sar and processes performance data for 1-2 days
 Enable APPLDATA Stream from Linux to VM. Collect the sar data: 
