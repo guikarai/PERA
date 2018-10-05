@@ -12,6 +12,11 @@ Note that **XXX** = collect interval in seconds and **YYY** = interval number
 
 # 2. Configuration/Display data
 
+A data collection script to be run for for each Linux and KVM Guest/Host can be find here under:
+* RHEL, CentOS, ClefOS
+* Ubuntu, Debian
+* Suse, Opensuse
+
 ## 2.1. CPACF Enablement verification
 A Linux on IBM Z user can easily check whether the Crypto Enablement feature is installed and which algorithms are supported in hardware. Hardware-acceleration for DES, TDES, AES, and GHASH requires CPACF. Read the features line from /proc/cpuinfo to discover whether the CPACF feature is enabled on your hardware.
 
