@@ -1,4 +1,5 @@
-# PERDA for Linux on IBM Z
+# Data collection procedure for a Pervasive Encryption Readiness & Deployment Assessment
+There are both sar data and Configuration/Display dumps to be collected.
 
 # Key aspect of the study
 * Linux sar performance data
@@ -9,14 +10,18 @@
 * Linux on IBM Z Data at rest environment
 * Linux on IBM Z Data in motion environment
 
-# 1. Linux sar and processes performance data for 1-2 days
-Enable APPLDATA Stream from Linux to VM. Collect the sar data: 
+# SAR and Systems data
+
+## Linux sar and processes performance data for 1-2 days
+Sar data allow us to analyse your each Linux Guest and KVM Guest/Host crypto performance and their configuration to potentially detect bottleneck and propose optimization recommendations. Please Enable APPLDATA Stream from Linux to VM. Collect the sar data: 
 ```
 sar -o OutFilename XXX YYY >/dev/null 2>&1 &
 ```
 Note that **XXX** = collect interval in seconds and **YYY** = interval number
 
-# 2. CPACF Enablement verification
+# Configuration/Display data
+
+## 1. CPACF Enablement verification
 A Linux on IBM Z user can easily check whether the Crypto Enablement feature is installed and which algorithms are supported in hardware. Hardware-acceleration for DES, TDES, AES, and GHASH requires CPACF. Read the features line from /proc/cpuinfo to discover whether the CPACF feature is enabled on your hardware.
 
 **$ cat /proc/cpuinfo**
@@ -37,7 +42,7 @@ processor 1: version = FF,  identification = 233EF7,  machine = 3906
 ***Note:*** From the cpuinfo output, you can find the features that are enabled in the central processors.
 If the features list has **msa** listed, it means that CPACF is enabled. 
 
-# 3. Linux Version
+## 2. Linux Version
 Type uname -a. This will give you your kernel version, but might not mention the distribution your running. 
 
 **$ uname -a**
@@ -66,9 +71,9 @@ VERSION_CODENAME=xenial
 UBUNTU_CODENAME=xenial
 ```
 
-# 4. Linux Configuration
+## 3. Linux Configuration
 
-## CPU configuration
+### CPU configuration
 lscpu gathers CPU architecture information from sysfs, /proc/cpuinfo and any applicable architecture-specific libraries. The information includes, for example, the number of CPUs, threads, cores, sockets, and Non-Uniform Memory Access (NUMA) nodes. There is also information about the CPU caches and cache sharing, family, model, bogoMIPS, byte order, and stepping.
 
 **$ lscpu**
@@ -103,7 +108,7 @@ NUMA node0 CPU(s):   0,1
 Flags:               esan3 zarch stfle msa ldisp eimm dfp edat etf3eh highgprs te vx vxd vxe gs sie
 ```
 
-## Memory configuration
+### Memory configuration
 The lsmem command lists the ranges of available memory with their online status. The listed memory blocks correspond to the memory block representation in sysfs. The command also shows the memory block size and the amount of memory in online and offline state.
 
 **$ lsmem**
@@ -116,7 +121,7 @@ Total online memory:       4G
 Total offline memory:      0B
 ```
 
-## DASD configuration
+### DASD configuration
 Use the lsdasd command to gather information about DASD devices from sysfs and display it in a summary format.
 
 **$ lsdasd**
@@ -128,7 +133,7 @@ Bus-ID     Status      Name      Device  Type  BlkSz  Size      Blocks
 0.0.1001   active      dasdc     94:8    ECKD  4096   5120MB    1310760
 ```
 
-## Disk space
+### Disk space
 The df command reports the amount of available disk space being used by file systems.
 
 **$ df -h**
@@ -152,9 +157,9 @@ none                        20G  5.0G   14G  27% /var/lib/docker/aufs/mnt/2b84e7
 shm                         64M     0   64M   0% /var/lib/docker/containers/13357e6d4a031801b5da3b4a3610aa6867704cf5e2c6f4096e1b24eaa640f533/shm
 ```
 
-# 5. Verification of support for Hardware Cryptographic operation
+## 4. Verification of support for Hardware Cryptographic operation
 
-## libICA
+### libICA
 To make use of the libica hardware support for cryptographic functions, must be install the libica version 3.0 package. it Depending on the distribution and installation parameters, some or all of them might be already installed with your initial setup.
 
 **$ sudo apt search libica3**
@@ -277,7 +282,7 @@ user: root
       AES GCM |         0              0 |         0             0
 ```
 
-## openCryptoki for PKCS#11
+### openCryptoki for PKCS#11
 openCryptoki is a PKCS#11 library and tools for Linux. It includes tokens supporting TPM and IBM crypto hardware as well as a software token.
 
 **$ sudo apt search opencryptoki**
@@ -294,7 +299,7 @@ opencryptoki/bionic-updates 3.9.0+dfsg-0ubuntu1.1 s390x
   PKCS#11 implementation (daemon)
 ```
 
-## Crypto modules
+### Crypto modules
 Use the lsmod command to check whether the crypto device driver module is already loaded. If the module is not loaded, use the modprobe command to load the device driver module. The cryptographic device driver consists of multiple, separate modules.
 
 **$ lsmod | grep aes_s390**
@@ -405,7 +410,7 @@ apt install opencryptoki
 Please ask your administrator.
 ```
 
-## Java
+### Java
 
 **$ sudo java -version**
 If java is installed:
@@ -421,7 +426,7 @@ apt install openjdk-8-jre-headless
 Ask your administrator to install one of them.
 ```
 
-# 7. Linux on IBM Z Data at rest environment
+## 5. Linux on IBM Z Data at rest environment
 
 
 
@@ -462,7 +467,7 @@ Filename				Type		Size	Used	Priority
 /dev/dasdc1                            	partition	5242940	583996	0
 ```
 
-# 8. Linux on IBM Z Data in motion environment
+## 6. Linux on IBM Z Data in motion environment
 
 **$ openssl version**
 ```
