@@ -19,7 +19,7 @@ Note that **XXX** = collect interval in seconds and **YYY** = interval number
 # 2. CPACF Enablement verification
 A Linux on IBM Z user can easily check whether the Crypto Enablement feature is installed and which algorithms are supported in hardware. Hardware-acceleration for DES, TDES, AES, and GHASH requires CPACF. Read the features line from /proc/cpuinfo to discover whether the CPACF feature is enabled on your hardware.
 
-**$ cat /etc/*release**
+**$ cat /proc/cpuinfo**
 ```
 vendor_id       : IBM/S390
 # processors    : 2
@@ -39,13 +39,15 @@ If the features list has **msa** listed, it means that CPACF is enabled.
 
 # 3. Linux Version
 Type uname -a. This will give you your kernel version, but might not mention the distribution your running. 
+
 **$ uname -a**
 ```
 Linux ghtstjav.mop.fr.ibm.com 4.4.0-109-generic #132-Ubuntu SMP Tue Jan 9 19:58:22 UTC 2018 s390x s390x s390x GNU/Linux
 ```
 
 To find out what distribution of linux your running cat /etc/*release or cat /etc/issue* or cat /proc/version.
-**$ cat /etc/*release**
+
+**$ cat /etc/*release***
 ```
 DISTRIB_ID=Ubuntu
 DISTRIB_RELEASE=16.04
