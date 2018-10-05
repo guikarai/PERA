@@ -13,8 +13,8 @@ Note that **XXX** = collect interval in seconds and **YYY** = interval number
 # 2. Configuration/Display data
 
 A data collection script to be run for for each Linux and KVM Guest/Host can be find here under:
-* RHEL, CentOS, ClefOS
-* Ubuntu, Debian
+* [RHEL, CentOS, ClefOS](https://github.com/guikarai/PERA/blob/master/perda-linux-rhel.sh)
+* [Ubuntu, Debian](https://github.com/guikarai/PERA/blob/master/perda-linux-debian.sh)
 * Suse, Opensuse
 
 ## 2.1. CPACF Enablement verification
