@@ -1,13 +1,12 @@
 #COLLECT INFORMATION ABOUT THE LINUX ENVIRONMENT
 touch PERDA.LINUX.txt
-
-echo "******************** THE FOLLOWING RESULTS OF A PERDA ASSESSMENT TOOL ********************" >> PERDA.LINUX.txt                                               ********************" >> PERDA.LINUX.txt
+echo "******************** THE FOLLOWING RESULTS OF A PERDA ASSESSMENT TOOL ********************" >> PERDA.LINUX.txt
 echo "#2_1" >> PERDA.LINUX.txt
 cat /proc/cpuinfo >> PERDA.LINUX.txt
 echo "#3_1" >> PERDA.LINUX.txt
 cat uname -a >> PERDA.LINUX.txt
 echo "#3_2" >> PERDA.LINUX.txt
-cat /etc/release >> PERDA.LINUX.txt
+cat */etc/release* >> PERDA.LINUX.txt
 echo "#4_1" >> PERDA.LINUX.txt
 lscpu >> PERDA.LINUX.txt
 echo "#4_2" >> PERDA.LINUX.txt
@@ -17,7 +16,7 @@ lsdasd >> PERDA.LINUX.txt
 echo "#4_4" >> PERDA.LINUX.txt
 df -h >> PERDA.LINUX.txt
 echo "#5_1" >> PERDA.LINUX.txt
-sudo apt search libica3
+sudo apt search libica3 >> PERDA.LINUX.txt
 echo "#5_2" >> PERDA.LINUX.txt
 icainfo -v >> PERDA.LINUX.txt
 echo "#5_3" >> PERDA.LINUX.txt
@@ -49,7 +48,7 @@ sudo java -version >> PERDA.LINUX.txt
 echo "#7_1" >> PERDA.LINUX.txt
 sudo sudo blkid >> PERDA.LINUX.txt
 echo "#7_2" >> PERDA.LINUX.txt
-sudo dmsetup status
+sudo dmsetup status >> PERDA.LINUX.txt
 echo "#7_3" >> PERDA.LINUX.txt
 sudo lvs >> PERDA.LINUX.txt
 echo "#7_4" >> PERDA.LINUX.txt
@@ -59,9 +58,9 @@ sudo pvs >> PERDA.LINUX.txt
 echo "#7_6" >> PERDA.LINUX.txt
 swapon -s >> PERDA.LINUX.txt
 echo "#8_1" >> PERDA.LINUX.txt
-openssl version
+openssl version >> PERDA.LINUX.txt
 echo "#8_2" >> PERDA.LINUX.txt
-openssl engine -c
+openssl engine -c >> PERDA.LINUX.txt
 echo "#8_3" >> PERDA.LINUX.txt
 ssh -V >> PERDA.LINUX.txt
 echo "#8_4" >> PERDA.LINUX.txt
