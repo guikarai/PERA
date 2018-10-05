@@ -1,37 +1,73 @@
 # PERDA for Linux on IBM Z
 
 # Key aspect of the study
-* Linux version
-* Linux configuration
-* Linux on IBM Z encryption libraries
-* Linux crypto daemons
-* Linux on IBM Z Data at rest environment
-* Linux on IBM Z Data in motion environment
+* 1. Linux sar performance data
+* 2. CPACF Enablement verification
+* 3. Linux version
+* 4. Linux configuration
+* 5. Verification of support for Hardware Cryptographic operation
+* 6. Linux on IBM Z Data at rest environment
+* 7. Linux on IBM Z Data in motion environment
 
-# Linux Version
-
-**$ cat /etc/issue**
+# 1. Linux sar and processes performance data for 1-2 days
+Enable APPLDATA Stream from Linux to VM. Collect the sar data: 
 ```
-Ubuntu 18.04.1 LTS \n \l
+sar -o OutFilename XXX YYY >/dev/null 2>&1 &
+```
+Note that **XXX** = collect interval in seconds and **YYY** = interval number
+
+# 2. CPACF Enablement verification
+A Linux on IBM Z user can easily check whether the Crypto Enablement feature is installed and which algorithms are supported in hardware. Hardware-acceleration for DES, TDES, AES, and GHASH requires CPACF. Read the features line from /proc/cpuinfo to discover whether the CPACF feature is enabled on your hardware.
+
+**$ cat /etc/*release**
+```
+vendor_id       : IBM/S390
+# processors    : 2
+bogomips per cpu: 21881.00
+features	: esan3 zarch stfle msa ldisp eimm dfp edat etf3eh highgprs te vx 
+cache0          : level=1 type=Data scope=Private size=128K line_size=256 associativity=8
+cache1          : level=1 type=Instruction scope=Private size=128K line_size=256 associativity=8
+cache2          : level=2 type=Data scope=Private size=4096K line_size=256 associativity=8
+cache3          : level=2 type=Instruction scope=Private size=2048K line_size=256 associativity=8
+cache4          : level=3 type=Unified scope=Shared size=131072K line_size=256 associativity=32
+cache5          : level=4 type=Unified scope=Shared size=688128K line_size=256 associativity=42
+processor 0: version = FF,  identification = 233EF7,  machine = 3906
+processor 1: version = FF,  identification = 233EF7,  machine = 3906
+```
+***Note:*** From the cpuinfo output, you can find the features that are enabled in the central processors.
+If the features list has **msa** listed, it means that CPACF is enabled. 
+
+# 3. Linux Version
+Type uname -a. This will give you your kernel version, but might not mention the distribution your running. 
+**$ uname -a**
+```
+Linux ghtstjav.mop.fr.ibm.com 4.4.0-109-generic #132-Ubuntu SMP Tue Jan 9 19:58:22 UTC 2018 s390x s390x s390x GNU/Linux
 ```
 
-**$ uname -r**
+To find out what distribution of linux your running cat /etc/*release or cat /etc/issue* or cat /proc/version.
+**$ cat /etc/*release**
 ```
-4.15.0-34-generic
+DISTRIB_ID=Ubuntu
+DISTRIB_RELEASE=16.04
+DISTRIB_CODENAME=xenial
+DISTRIB_DESCRIPTION="Ubuntu 16.04.5 LTS"
+NAME="Ubuntu"
+VERSION="16.04.5 LTS (Xenial Xerus)"
+ID=ubuntu
+ID_LIKE=debian
+PRETTY_NAME="Ubuntu 16.04.5 LTS"
+VERSION_ID="16.04"
+HOME_URL="http://www.ubuntu.com/"
+SUPPORT_URL="http://help.ubuntu.com/"
+BUG_REPORT_URL="http://bugs.launchpad.net/ubuntu/"
+VERSION_CODENAME=xenial
+UBUNTU_CODENAME=xenial
 ```
 
-## Linux Configuration
+# 4. Linux Configuration
 
-**$ lsmem**
-```
-RANGE                                 SIZE  STATE REMOVABLE BLOCK
-0x0000000000000000-0x00000000ffffffff   4G online        no  0-15
-
-Memory block size:       256M
-Total online memory:       4G
-Total offline memory:      0B
-```
-
+## CPU configuration
+lscpu gathers CPU architecture information from sysfs, /proc/cpuinfo and any applicable architecture-specific libraries. The information includes, for example, the number of CPUs, threads, cores, sockets, and Non-Uniform Memory Access (NUMA) nodes. There is also information about the CPU caches and cache sharing, family, model, bogoMIPS, byte order, and stepping.
 **$ lscpu**
 ```
 Architecture:        s390x
@@ -64,57 +100,178 @@ NUMA node0 CPU(s):   0,1
 Flags:               esan3 zarch stfle msa ldisp eimm dfp edat etf3eh highgprs te vx vxd vxe gs sie
 ```
 
-# Linux on IBM Z encryption libraries
-
-**$ icastats -v**
+## Memory configuration
+The lsmem command lists the ranges of available memory with their online status. The listed memory blocks correspond to the memory block representation in sysfs. The command also shows the memory block size and the amount of memory in online and offline state.
+**$ lsmem**
 ```
-icastats: libica version 3.2.1
-Copyright IBM Corp. 2009, 2010, 2011, 2014.
+RANGE                                 SIZE  STATE REMOVABLE BLOCK
+0x0000000000000000-0x00000000ffffffff   4G online        no  0-15
+
+Memory block size:       256M
+Total online memory:       4G
+Total offline memory:      0B
 ```
 
+## DASD configuration
+Use the lsdasd command to gather information about DASD devices from sysfs and display it in a summary format.
+**$ lsdasd**
+```
+Bus-ID     Status      Name      Device  Type  BlkSz  Size      Blocks
+==============================================================================
+0.0.0100   active      dasda     94:0    ECKD  4096   7042MB    1802880
+0.0.1000   active      dasdb     94:4    ECKD  4096   20480MB   5243040
+0.0.1001   active      dasdc     94:8    ECKD  4096   5120MB    1310760
+```
+
+## Disk space
+The df command reports the amount of available disk space being used by file systems.
+**$ df -h**
+```
+Filesystem                 Size  Used Avail Use% Mounted on
+udev                       895M     0  895M   0% /dev
+tmpfs                      181M   19M  162M  11% /run
+/dev/dasda1                6.7G  2.6G  3.8G  41% /
+tmpfs                      902M  720K  901M   1% /dev/shm
+tmpfs                      5.0M     0  5.0M   0% /run/lock
+tmpfs                      902M     0  902M   0% /sys/fs/cgroup
+/dev/mapper/vg5964-lv5964   20G  5.0G   14G  27% /var/lib/docker
+tmpfs                      181M     0  181M   0% /run/user/0
+none                        20G  5.0G   14G  27% /var/lib/docker/aufs/mnt/8712743acd63f27d6816a2acaca253f1fb407a0a56db76f62d411eac061fc47e
+shm                         64M     0   64M   0% /var/lib/docker/containers/5f802e174e52956443c01228d213536b315c4411157c194138ea5fc223bbaf79/shm
+none                        20G  5.0G   14G  27% /var/lib/docker/aufs/mnt/7122ae3c8417d9d30d5b5138f95137ef23cb8cd8c6bee49a8b852645e3e81bfc
+shm                         64M     0   64M   0% /var/lib/docker/containers/65a198b05dad2c67c4f3ec465076661936356f403e98e80ee479dc1fcaec080c/shm
+none                        20G  5.0G   14G  27% /var/lib/docker/aufs/mnt/35d493e285a2241ca1b8c44c475f02d8bc9caeb4d0468c6e6f39ec615adda2d6
+shm                         64M     0   64M   0% /var/lib/docker/containers/0e20927b1e084a39671f1360274b1f56c67c266306b1eb70af253d4375eed61b/shm
+none                        20G  5.0G   14G  27% /var/lib/docker/aufs/mnt/2b84e7c0a6f6576ee9ceba551b88102f9c184993c4c5cd4a2f16d75901f22653
+shm                         64M     0   64M   0% /var/lib/docker/containers/13357e6d4a031801b5da3b4a3610aa6867704cf5e2c6f4096e1b24eaa640f533/shm
+```
+
+# 5. Verification of support for Hardware Cryptographic operation
+
+## libICA
+To make use of the libica hardware support for cryptographic functions, must be install the libica version 3.0 package. it Depending on the distribution and installation parameters, some or all of them might be already installed with your initial setup.
+**$ sudo apt search libica3**
+```     
+sudo apt search libica3
+Sorting... Done
+Full Text Search... Done
+libica3/bionic,now 3.2.1-0ubuntu1 s390x [installed,automatic]
+  hardware cryptography support for IBM System z hardware
+```
+
+The libICA package provides a command icainfo that lists the libICA supported cryptographic operations for an IBM Z system. 
 **$ icainfo -v**
 ```
 icainfo: libica version 3.2.1
 Copyright IBM Corp. 2007, 2016.
 ```
 
-**$ sudo apt search libica**
-```     
-Sorting... Done
-Full Text Search... Done
-libica-dev/bionic 3.2.1-0ubuntu1 s390x
-  hardware cryptography support for IBM System z hardware (dev package)
-
-libica-utils/bionic,now 3.2.1-0ubuntu1 s390x [installed]
-  hardware cryptography support for Linux on z Systems (utils)
-
-libica3/bionic,now 3.2.1-0ubuntu1 s390x [installed,automatic]
-  hardware cryptography support for IBM System z hardware
-
-...
-
+The icainfo command to check on the CPACF feature code enablement. If the Crypto Enablement feature 3863 is installed, you will see that besides SHA, other algorithms are available with hardware support. The icainfo command displays which CPACF functions are supported by the implementation inside the libica library. 
+**$ icainfo**
 ```
-**$ sudo apt search openssl-ibmca**
-```
-Sorting... Done
-Full Text Search... Done
-openssl-ibmca/bionic,now 1.4.1-0ubuntu1 s390x [installed]
-  libica based hardware acceleration engine for OpenSSL
+      Cryptographic algorithm support      
+-------------------------------------------
+ function      |  hardware  |  software  
+---------------+------------+------------
+         SHA-1 |    yes     |     yes
+       SHA-224 |    yes     |     yes
+       SHA-256 |    yes     |     yes
+       SHA-384 |    yes     |     yes
+       SHA-512 |    yes     |     yes
+      SHA3-224 |    yes     |      no
+      SHA3-256 |    yes     |      no
+      SHA3-384 |    yes     |      no
+      SHA3-512 |    yes     |      no
+     SHAKE-128 |    yes     |      no
+     SHAKE-256 |    yes     |      no
+         GHASH |    yes     |      no
+         P_RNG |    yes     |     yes
+  DRBG-SHA-512 |    yes     |     yes
+        RSA ME |     no     |     yes
+       RSA CRT |     no     |     yes
+       DES ECB |    yes     |     yes
+       DES CBC |    yes     |     yes
+       DES OFB |    yes     |      no
+       DES CFB |    yes     |      no
+       DES CTR |    yes     |      no
+      DES CMAC |    yes     |      no
+      3DES ECB |    yes     |     yes
+      3DES CBC |    yes     |     yes
+      3DES OFB |    yes     |      no
+      3DES CFB |    yes     |      no
+      3DES CTR |    yes     |      no
+     3DES CMAC |    yes     |      no
+       AES ECB |    yes     |     yes
+       AES CBC |    yes     |     yes
+       AES OFB |    yes     |      no
+       AES CFB |    yes     |      no
+       AES CTR |    yes     |      no
+      AES CMAC |    yes     |      no
+       AES XTS |    yes     |      no
+       AES GCM |    yes     |      no
+-------------------------------------------
+No built-in FIPS support.
 ```
 
+Use the icastats utility to find out whether libICA uses hardware acceleration features or works with software fallbacks. 
+**$ icastats -v**
+```
+icastats: libica version 3.2.1
+Copyright IBM Corp. 2009, 2010, 2011, 2014.
+```
+
+icastats displays statistic data about the usage of cryptographic functions provided by libica. libICA is a cryptographic library supporting SHA, RSA, DES and AES in different modes of operations. The invocation of each call to all the cryptographic functions is tracked with individual counters which can be displayed and maintained with icastats.
+**$ sudo icastats -A**
+```
+user: root
+ function     |           hardware       |            software
+--------------+--------------------------+-------------------------
+              |      ENC    CRYPT   DEC  |      ENC    CRYPT   DEC 
+--------------+--------------------------+-------------------------
+        SHA-1 |               0          |                0
+      SHA-224 |               0          |                0
+      SHA-256 |               0          |                0
+      SHA-384 |               0          |                0
+      SHA-512 |               0          |                0
+     SHA3-224 |               0          |                0
+     SHA3-256 |               0          |                0
+     SHA3-384 |               0          |                0
+     SHA3-512 |               0          |                0
+    SHAKE-128 |               0          |                0
+    SHAKE-256 |               0          |                0
+        GHASH |               0          |                0
+        P_RNG |               0          |                0
+ DRBG-SHA-512 |             336          |                0
+       RSA-ME |               0          |                0
+      RSA-CRT |               0          |                0
+      DES ECB |         0              0 |         0             0
+      DES CBC |         0              0 |         0             0
+      DES OFB |         0              0 |         0             0
+      DES CFB |         0              0 |         0             0
+      DES CTR |         0              0 |         0             0
+     DES CMAC |         0              0 |         0             0
+     3DES ECB |         0              0 |         0             0
+     3DES CBC |         0              0 |         0             0
+     3DES OFB |         0              0 |         0             0
+     3DES CFB |         0              0 |         0             0
+     3DES CTR |         0              0 |         0             0
+    3DES CMAC |         0              0 |         0             0
+      AES ECB |         0              0 |         0             0
+      AES CBC |         0              0 |         0             0
+      AES OFB |         0              0 |         0             0
+      AES CFB |         0              0 |         0             0
+      AES CTR |         0              0 |         0             0
+     AES CMAC |         0              0 |         0             0
+      AES XTS |         0              0 |         0             0
+      AES GCM |         0              0 |         0             0
+```
+
+## openCryptoki for PKCS#11
+openCryptoki is a PKCS#11 library and tools for Linux. It includes tokens supporting TPM and IBM crypto hardware as well as a software token.
 **$ sudo apt search opencryptoki**
 ```
 Sorting... Done
 Full Text Search... Done
-libica-dev/bionic 3.2.1-0ubuntu1 s390x
-  hardware cryptography support for IBM System z hardware (dev package)
-
-libica-utils/bionic,now 3.2.1-0ubuntu1 s390x [installed]
-  hardware cryptography support for Linux on z Systems (utils)
-
-libica3/bionic,now 3.2.1-0ubuntu1 s390x [installed,automatic]
-  hardware cryptography support for IBM System z hardware
-
 libopencryptoki-dev/bionic-updates 3.9.0+dfsg-0ubuntu1.1 s390x
   PKCS#11 implementation (development)
 
@@ -123,12 +280,10 @@ libopencryptoki0/bionic-updates 3.9.0+dfsg-0ubuntu1.1 s390x
 
 opencryptoki/bionic-updates 3.9.0+dfsg-0ubuntu1.1 s390x
   PKCS#11 implementation (daemon)
-
-tpm-tools-pkcs11/bionic 1.3.9.1-0.2ubuntu3 s390x
-  Management tools for the TPM hardware (PKCS#11 tools)
-...
 ```
-# linux crypto daemons
+
+## Crypto modules
+Use the lsmod command to check whether the crypto device driver module is already loaded. If the module is not loaded, use the modprobe command to load the device driver module. The cryptographic device driver consists of multiple, separate modules.
 **$ lsmod | grep aes_s390**
 ```
 aes_s390               24576  0
@@ -178,23 +333,40 @@ Per-device successfully completed request counts
     00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
 ```
 
+For the Linux virtual machine to gain access to the crypto card, you must load a specialized crypto device driver. By default, the device drivers that are required for Crypto processing are not loaded.
 **$ lszcrypt**
+If the device driver is loaded:
 ```
 card01: CEX5A
 ```
+If the device driver is not loaded:
+```
+lszcrypt: error - cryptographic device driver zcrypt is not loaded!
+```
 
 **$ lszcrypt -VVV**
+If the device driver is loaded:
 ```
 card01: CEX5A       online  hwtype=11 depth=8 request_count=0 pendingq_count=0 requestq_count=0 functions=0x68800000
 ```
+If the device driver is not loaded:
+```
+lszcrypt: error - cryptographic device driver zcrypt is not loaded!
+```
 
 **$ lszcrypt -c 01**
+If the device driver is loaded:
 ```
 card01 provides capability for:
 RSA 4K Clear Key
 ```
+If the device driver is not loaded:
+```
+lszcrypt: error - cryptographic device driver zcrypt is not loaded!
+```
 
 **$ pkcsconf -t**
+If the openCryptoki daemon is loaded:
 ```
 Token #3 Info:
 Label: IBM OS PKCS#11                  
@@ -211,10 +383,19 @@ Hardware Version: 1.0
 Firmware Version: 1.0
 Time: 18:13:52
 ```
+If the openCryptoki daemon is not loaded:
+```
+Command 'pkcsconf' not found, but can be installed with:
 
-# Linux on IBM Z Data at rest environment
+apt install opencryptoki
+Please ask your administrator.
+```
 
+## Java
 **$ sudo java -version**
+If java is installed:
+
+If java is not installed:
 ```
 Command 'java' not found, but can be installed with:
 
@@ -224,6 +405,10 @@ apt install openjdk-8-jre-headless
 
 Ask your administrator to install one of them.
 ```
+
+# 7. Linux on IBM Z Data at rest environment
+
+
 
 **$ sudo blkid**
 ```
@@ -259,7 +444,7 @@ Filename				Type		Size	Used	Priority
 /dev/dasdb1                            	partition	1439900	432128	0
 ```
 
-# Linux on IBM Z Data in motion environment
+# 8. Linux on IBM Z Data in motion environment
 
 **$ openssl version**
 ```
