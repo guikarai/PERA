@@ -428,8 +428,6 @@ Ask your administrator to install one of them.
 
 ## 5. Linux on IBM Z Data at rest environment
 
-
-
 **$ sudo blkid**
 ```
 /dev/dasda1: UUID="de305fe5-7eaa-4882-b002-aadb5901d60f" TYPE="ext4"
