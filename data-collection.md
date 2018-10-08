@@ -1,4 +1,4 @@
-# Data collection procedure for a Pervasive Encryption Readiness Assessment
+# PERDA - Data collection procedure for z/OS
 There are both SMF Records and Configuration/Display dumps to be collected.
 
 In order to be able to analyze the hardware crypto utilization, z/OS and some key subsystems, we need to gather SMF records for all systems that will define the scope of the Crypto assessment study.
