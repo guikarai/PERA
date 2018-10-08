@@ -1,5 +1,4 @@
-# Pervasive Encryption Readiness & Deployment Assessment 
-# Data collection for Linux on IBM Z and KVM
+# PERDA - Data collection for Linux on IBM Z and KVM
 There are both sar data and Configuration/Display dumps to be collected.
 
 # 1. SAR and Systems data
