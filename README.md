@@ -36,15 +36,15 @@ PERDA is based on a technical study. From our client data we can see everything 
 * Available white space for Pervasive Encryption projects
 * Encryption maturity and skills
 * How optimized is the crypto environment
-* For z/OS
 * Data set structures, volumes and degree of elibility
- * 1. Network architecture, volumes of unsecured network connections
- * 2. Estimation of Impact of z/OS data set encryption on selected LPARs
- * 3. Estimation of Impact of z/OS coupling facility encryption on selected LPARs
-* Eclusively for Linux guests and KVM hosts/guests
- * 1. File systems and volume structures, volumes and degree of elibility
- * 2. Path for data migration for each guests
- * 3. Secured connections volumetry
+* Network architecture, volumes of unsecured network connections
+* Estimation of Impact of z/OS data set encryption on selected LPARs
+* Estimation of Impact of z/OS coupling facility encryption on selected LPARs
+* :penguin: File systems and volume structures, volumes and degree of elibility
+* :penguin: Path for data migration for each guests
+* :penguin: Secured connections volumetry
+
+**Note:** :penguin: is exlusively for Linux and KVM on IBM Z or IBM LinuxONE.
 
 PERDA includes two main livrables:
   * 1day on client site summary presentation
@@ -66,7 +66,7 @@ PERDA starts by contacting the IBM Client Center of Montpelier team.
 ## Required data for a PERDA study :file_folder:
 You can find here the data collection methodology for [z/OS Environment](https://github.com/guikarai/PERA/blob/master/data-collection.md).
 
-You can find here the data collection methodology for [Linux & KVM](https://github.com/guikarai/PERA/blob/master/data-collection-linux.md), and z/VM Environment.
+You can find here the data collection methodology for :penguin: [Linux & KVM](https://github.com/guikarai/PERA/blob/master/data-collection-linux.md), and z/VM Environment.
 
 ## Contact us :email:
 Contacts for information and support about the PERDA Assessment:
