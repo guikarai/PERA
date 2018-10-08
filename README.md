@@ -40,9 +40,9 @@ PERDA is based on a technical study. From our client data we can see everything 
 * Network architecture, volumes of unsecured network connections
 * Estimation of Impact of z/OS data set encryption on selected LPARs
 * Estimation of Impact of z/OS coupling facility encryption on selected LPARs
-* :penguin: File systems and volume structures, volumes and degree of elibility
-* :penguin: Path for data migration for each guests
-* :penguin: Secured connections volumetry
+* File systems and volume structures, volumes and degree of elibility :penguin:
+* Path for data migration for each guests :penguin:
+* Secured connections volumetry :penguin:
 
 **Note:** :penguin: is exlusively for Linux and KVM on IBM Z or IBM LinuxONE.
 
