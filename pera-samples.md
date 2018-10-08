@@ -24,3 +24,6 @@ For all the LPAR analysed during a study, we use to focus and to identify data s
 ### Client eligible data sets and the "Extended format"
 For all the LPAR analysed during a study, we use to focus and to identify if eligible data set are in extended format or not. I that case extended format data sets are ready for being encrypted. Non-extended format are potential data sets that can be encrypted if they become extended format after a data migration process as intermediate steps. This chart in this case shows how inequal LPARs are and in most of the case, the encryption to be become pervasive on eligible data set will required data set to be in extended format.
   ![alt text](https://github.com/guikarai/PERA/blob/master/IMAGES/pera-extended.png)
+
+### Client linux guest Scorecard regarding dmcrypt and crypto stack:
+https://github.com/guikarai/PERA/blob/master/IMAGES/perda-linux-scorecard.png
