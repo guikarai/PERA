@@ -36,15 +36,15 @@ PERDA is based on a technical study. From our client data we can see everything 
 * Available white space for Pervasive Encryption projects
 * Encryption maturity and skills
 * How optimized is the crypto environment
-* Eclusively for z/OS
- * Data set structures, volumes and degree of elibility
- * Network architecture, volumes of unsecured network connections
- * Estimation of Impact of z/OS data set encryption on selected LPARs
- * Estimation of Impact of z/OS coupling facility encryption on selected LPARs
+* For z/OS
+* Data set structures, volumes and degree of elibility
+ * 1. Network architecture, volumes of unsecured network connections
+ * 2. Estimation of Impact of z/OS data set encryption on selected LPARs
+ * 3. Estimation of Impact of z/OS coupling facility encryption on selected LPARs
 * Eclusively for Linux guests and KVM hosts/guests
- * File systems and volume structures, volumes and degree of elibility
- * 
- * 
+ * 1. File systems and volume structures, volumes and degree of elibility
+ * 2. Path for data migration for each guests
+ * 3. Secured connections volumetry
 
 PERDA includes two main livrables:
   * 1day on client site summary presentation
