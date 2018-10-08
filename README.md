@@ -51,7 +51,7 @@ PERDA includes two main livrables:
   * 100+ pages report
 
 ## PERDA samples :bar_chart:
-You can find [here](https://github.com/guikarai/PERA/blob/master/pera-samples.md), a set of insights picked-up from a real PERA study.
+You can find [here](https://github.com/guikarai/PERA/blob/master/pera-samples.md), a set of insights picked-up from a real PERDA study.
 
 ## PERDA delivery time :calendar:
 PERDA starts by contacting the IBM Client Center of Montpelier team.
