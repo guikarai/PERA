@@ -1,4 +1,4 @@
-# PERA Samples
+# Samples of Pervasive Encryption Readiness & Deployment Assessment
 
 ### Client LPAR Scorecard regarding z/OS Data set encryption
   For each client LPAR we use to provide a scorecard. The main objective of this scorecard is to highlight several aspect that matters for every z/OS Data set encryption projects.
@@ -13,7 +13,6 @@
 ### Client linux guest Scorecard regarding dmcrypt and crypto stack:
 For each Linux on IBM Z LPARs or Guests, we use to provide a scorecard. The main objective of this scorecard is first to highlight several how much the crypto stack is configured and optimized. Second, it is to point and to list required intermediates activities prior to dmcrypt enablement to protect data at rest, and openssl and opencryptoki configuration to protect data in motion.
  ![alt text](https://github.com/guikarai/PERA/blob/master/IMAGES/perda-linux-scorecard.png)
-
 
 ### Client LPAR Scorecard regarding Network connections
   ![alt text](https://github.com/guikarai/PERA/blob/master/IMAGES/pera-score-card-zert.png)
