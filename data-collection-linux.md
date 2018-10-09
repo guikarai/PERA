@@ -48,7 +48,7 @@ Linux ghtstjav.mop.fr.ibm.com 4.4.0-109-generic #132-Ubuntu SMP Tue Jan 9 19:58:
 
 To find out what distribution of linux your running cat /etc/*release or cat /etc/issue* or cat /proc/version.
 
-**$ cat /etc/release* **
+**$ cat /etc/\*release\* **
 ```
 DISTRIB_ID=Ubuntu
 DISTRIB_RELEASE=16.04
