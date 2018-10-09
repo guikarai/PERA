@@ -431,7 +431,7 @@ Ask your administrator to install one of them.
 /dev/dasdc1: UUID="b48c5f7e-b954-421c-a3bc-9e93f5a0586b" TYPE="ext4"
 ```
 
-**$ sudo dmsetup status
+**$ sudo dmsetup status**
 ```
 vg5964-lv5964: 0 41934848 linear 
 ```
