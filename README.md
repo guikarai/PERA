@@ -55,7 +55,7 @@ You can find [here](https://github.com/guikarai/PERA/blob/master/pera-samples.md
 
 ## PERDA delivery time :calendar:
 PERDA starts by contacting the IBM Client Center of Montpelier team.
-* Following a formal engament process and once client and IBM team has an agreement the PERDA study process can start.
+* Following a formal engagement process and once client and IBM team has an agreement the PERDA study process can start.
 * Client collects technical data and share it with the IBM team.
 * The IBM team checks and validates received data. Count up to 7 days for this step according received volumes.
 * The IBM team starts to analyse received data. Count up to 15 days for this step according received volumes.
