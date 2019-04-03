@@ -1,11 +1,11 @@
-# PERDA - Data collection procedure for z/OS
-There are both SMF Records and Configuration/Display dumps to be collected.
+The PERDA and the Crypto Assessment are designed to provide customers with a comprehensive review of their crypto posture and to identify any security gaps that need to be addressed. The assessment team will provide their customer with a Health check report that will include findings and any recommended actions to be taken. This may include IBM Z specific configuration optimizations that can evolve in follow-up remediation projects, but also more general and best practices optimization suggestions.
 
-In order to be able to analyze the hardware crypto utilization, z/OS and some key subsystems, we need to gather SMF records for all systems that will define the scope of the Crypto assessment study.
+This document is intended to provide guidelines to customers for required data collection to ensure successful delivery of PERDA and Crypto assessment.
+
+In order to be able to analyze the hardware crypto utilization, z/OS and some key subsystems, we need to gather SMF records for all systems that will define the scope of the PERDA Study and the Crypto assessment study.
 
 # SMF Records
-SMF records allow us to analyse your z/OS crypto performance and configuration to potentially detect bottleneck and propose optimization recommendations. We need to following SMF records for a standard Crypto assessment study:
-Hardware and z/OS:
+SMF records allow us to analyze your z/OS crypto performance and configuration to potentially detect bottleneck and propose optimization recommendations. We need the following SMF records:
 * **SMF 70-79**
 * **SMF 14, 15**
 * **SMF 30**
@@ -15,12 +15,16 @@ Hardware and z/OS:
 * **SMF 113**
 * **SMF 119** (if running z/OS 2.3)
 
-We expect to have SMF 7x and SMF 113 (if collected) for all partitions of all machines. Before sending any data to our ftp server, you will need to contact us to receive a user and a password for this server.
+Sample JCL to terse and send SMF records to our FTP server are also provided in this document. We expect to have SMF 7x and SMF 113 (if collected) for all partitions of all machines. See detailed guidelines in SMF data collection chapter. 
+
+**Important note:** Before sending any data to our ftp server, you will need to contact us to receive a user and a password for this server.
+
 
 ## 1. Mandatory SMF Data
 
-A standard PERA assessment analyzes the hardware, z/OS, ICSF and z/OS configurations.
-SMF records for 2 to 3 days representing a period of significant activity. You can send all the SMF records type, and we will sort them in IBM Client Center, or limit the records to:
+A standard Crypto assessment analyzes the hardware, z/OS, ICSF and z/OS configurations. 
+SMF records for 2 to 3 days representing a period of significant activity. You can send all the SMF records type, and we will sort them in IBM Client Center, or limit the records to: 
+
 * **RMF records:** 70-79
 * **Batch analysis:** 30
 * **DFSMS:** 42
@@ -43,11 +47,14 @@ SMF 119 for 2 “loaded” hours only, for production only, for a collected day.
 
 More information available here: http://www-01.ibm.com/support/docview.wss?uid=tss1tc000066&aid=3 
 
-**NOTE:** Some results to be presented in the Crypto Assessment assumes that the following performance APARs have been applied to systems: **OA53718**, **OA53664**.
+**NOTE:** Some results to be presented in the Crypto Assessment assumes that the following performance APARs have been applied to systems: OA53718, OA53664.
 
-**NOTE:** For pervasive encryption estimations, there are required APARs that provide enhancements to DFSMS SMF 42.6 for pervasive encryption. z/OS V2.1 and V2.2 require **OA52132**, and **OA52734** is required for V2.3.
+**NOTE:** For pervasive encryption estimations, there are required APARs that provide enhancements to DFSMS SMF 42.6 for pervasive encryption. z/OS V2.1 and V2.2 require **OA52132, and OA52734** is required for V2.3.
 
-**NOTE:** If the machine where SMF records are collected from has no zAAP and no zIIP, PROJECTCPU=YES must be specified in IEAOPTxx (at least during the collected period, but can remain active)
+**NOTE:** If the machine where SMF records are collected from has no zAAP and no zIIP, PROJECTCPU=YES must be specified in IEAOPTxx (at least during the collected period, but can remain active) 
+
+**NOTE:** Regarding Coupling Facility Encryption assessment. **APAR OA51879** for z/OS V2.2 provides XES support for enhanced list/cache reporting. Additionally, **APAR OA52003** provides new fields in the SMF 74.4 records to capture new structure information provided by XES in **APAR OA51879**.
+
 
 ## 2. zERT SMF 119 type 12
 
@@ -179,8 +186,27 @@ You can use the following JCL sample to compress a SMF dataset:
 There is nothing else to do before sending the data.
 
 ## 5. Sending the tersed files
-The data collected will be sent to IBM Crypto assessment team through FTP using the following JCL template after having updated the fields in blue.
+
+At this step you have 3 options options:
+•	**Option 1:** To open a hardware PMR and to upload your data via ECUREP
+•	**Option 2:** To upload data via HTTPS in an IBM Box
+•	**Option 3:** To send data via FTP to IBM Client Center
+
+**About the OPTION 1 – PMR and ECUREP**
+According to your enterprise approved process, you can open an hardware PMR first and upload your data in ECUREP (Enhanced Customer Data Repository) from your z/OS second.
+NOTE: Don’t forget to add in the access control list of ECUREP the following email address to allow the IBM Client Center of Montpellier to be able to access to the PMR data:
+•	philippe.bruschet@fr.ibm.com 
+•	Richard.corrihons@fr.ibm.com 
+
+
+**About the OPTION 2 – IBM Box**
+An IBM Box shared folder will be created for your organization. Please contact the team to get access to the upload/download link so that you can upload your data in.
+
+**About the OPTION 3 – FTPS to IBM Client Center**
+The data collected will be sent to IBM team through FTP using the following JCL template after having updated the fields in blue.
+
 The directory your_directory must be created before submitting the JCL, if not existing already.
+
 ```
 //*------------------------------------------------------------------
 //TSOB EXEC PGM=IKJEFT01
@@ -327,7 +353,8 @@ Certificate:
          4b:a8:cc:46:81:ab:db:ea:c2:bc:4c:95:2d:73:19:25:6d:ac:
          57:62:71:d2
 ```
-# Configuration/Display dumps
+
+# The following is required for Crypto Assessment and is optional for PERDA study.
 
 ## 1. Extra data collection procedure – OpenSSH
 ### Cipher preference check
