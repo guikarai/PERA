@@ -197,7 +197,7 @@ At this step you have 3 options options:
 •	**Option 3:** To send data via FTP to IBM Client Center
 
 
-**About the OPTION 1 – PMR and ECUREP**
+### About the OPTION 1 – PMR and ECUREP
 According to your enterprise approved process, you can open an hardware PMR first and upload your data in ECUREP (Enhanced Customer Data Repository) from your z/OS second.
 
 **NOTE:** Don’t forget to add in the access control list of ECUREP the following email address to allow the IBM Client Center of Montpellier to be able to access to the PMR data:
@@ -205,10 +205,10 @@ philippe.bruschet@fr.ibm.com
 Richard.corrihons@fr.ibm.com 
 
 
-**About the OPTION 2 – IBM Box**
+### About the OPTION 2 – IBM Box
 An IBM Box shared folder will be created for your organization. Please contact the team to get access to the upload/download link so that you can upload your data in.
 
-**About the OPTION 3 – FTPS to IBM Client Center**
+### About the OPTION 3 – FTPS to IBM Client Center
 The data collected will be sent to IBM team through FTP using the following JCL template after having updated the fields in blue.
 
 The directory your_directory must be created before submitting the JCL, if not existing already.
