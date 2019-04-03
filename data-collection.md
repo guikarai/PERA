@@ -189,15 +189,20 @@ There is nothing else to do before sending the data.
 ## 5. Sending the tersed files
 
 At this step you have 3 options options:
+
 •	**Option 1:** To open a hardware PMR and to upload your data via ECUREP
+
 •	**Option 2:** To upload data via HTTPS in an IBM Box
+
 •	**Option 3:** To send data via FTP to IBM Client Center
+
 
 **About the OPTION 1 – PMR and ECUREP**
 According to your enterprise approved process, you can open an hardware PMR first and upload your data in ECUREP (Enhanced Customer Data Repository) from your z/OS second.
-NOTE: Don’t forget to add in the access control list of ECUREP the following email address to allow the IBM Client Center of Montpellier to be able to access to the PMR data:
-•	philippe.bruschet@fr.ibm.com 
-•	Richard.corrihons@fr.ibm.com 
+
+**NOTE:** Don’t forget to add in the access control list of ECUREP the following email address to allow the IBM Client Center of Montpellier to be able to access to the PMR data:
+philippe.bruschet@fr.ibm.com 
+Richard.corrihons@fr.ibm.com 
 
 
 **About the OPTION 2 – IBM Box**
